@@ -33,6 +33,7 @@
 //random secretNumber
 let secretNumber = Math.trunc(Math.random()*20)+1
 let score = 20;
+let highScore = 0;
 
 
 
@@ -54,6 +55,11 @@ document.querySelector('.check')
            document.querySelector('.number').style.width = '30rem'
            // display correct number
            document.querySelector('.number').textContent = secretNumber;
+           // set highScore to score
+           if (score > highScore) {
+               highScore = score;
+           document.querySelector('.highscore').textContent = highScore;
+           }
 
         //when guess is too high
        } else if (guess > secretNumber){
@@ -102,17 +108,28 @@ document.querySelector('.check')
         document.querySelector('.number').style.width = '15rem';
     })
 
-// NULL vs UNDEFINED --
+// HIGH SCORE ---
+//when player wins it should store the score in a variable called highscore
+//when the game resets it should not reset that value but keep it
+//when the player wins again it should compare score to highscore and make score the new highscore if current score is bigger
+
+
+
+// NULL vs UNDEFINED vs EMPTY STRING--
 // both are saying there is no value
 //
-// null means no value at all - it does not exist at all
+// null means no value at all - it does not exist at all - data type is object
 //
-// undefined means something can exist but it has no value at all
+// undefined means something can exist but it has no value at all - data type is undefined
 // undefined is the default state of all variables when you just make them without giving a value
 // let a; (a has no value it is undefined)
 
 // this inside function is very similar to
 //
+// empty string is what it says it is empty string--type is string
+//
 // function x(){
 //     console.log(23)
 // }
+
+// NULL is used to refer to nothing. However, an empty string is used to point to a unique string with zero length
