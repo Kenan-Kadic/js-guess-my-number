@@ -31,20 +31,31 @@
 // to get it to go to 20 you can do +1
 
 //random secretNumber
-const secretNumber = Math.trunc(Math.random()*20)+1
+let secretNumber = Math.trunc(Math.random()*20)+1
 let score = 20;
 
-document.querySelector('.number').textContent = secretNumber;
+
 
 document.querySelector('.check')
     .addEventListener('click', function() {
         const guess = Number(document.querySelector('.guess').value)
         console.log(guess, typeof guess)
 
+        // when there is no input
        if(!guess) {
            console.log(document.querySelector('.message').textContent = 'No secretNumber! ⛔️ ')
+
+        //when player wins
         } else if (guess === secretNumber){
            document.querySelector('.message').textContent = '🏆 Correct Number!'
+           //change background color using camelCase
+           document.querySelector('body').style.backgroundColor = '#60b347'
+           //change width
+           document.querySelector('.number').style.width = '30rem'
+           // display correct number
+           document.querySelector('.number').textContent = secretNumber;
+
+        //when guess is too high
        } else if (guess > secretNumber){
             if (score > 1) {
                document.querySelector('.message').textContent = '📈 Too high'
@@ -55,6 +66,8 @@ document.querySelector('.check')
                document.querySelector('.score').textContent = 0;
 
             }
+
+        //when guess is too low
         } else if (guess < secretNumber){
             if (score > 1) {
                 document.querySelector('.message').textContent = '📉 Too low'
@@ -67,6 +80,36 @@ document.querySelector('.check')
        }
 
     });
+
+    // fix the Play Again button
+
+    document.querySelector('.again').addEventListener('click',function (){
+        // reset the guess input field
+        Number(document.querySelector('.guess').value = '')
+
+        //reset the radnom secretNumber value
+        secretNumber = Math.trunc(Math.random()*20)+1
+        document.querySelector('.number').textContent = '?'
+
+        //reset the score variable and assign it to score
+        score = 20;
+        document.querySelector('.score').textContent = score;
+        //reset the message
+        document.querySelector('.message').textContent = 'Start guessing...'
+        //restore original background color
+        document.querySelector('body').style.backgroundColor = '#222';
+        //restore original number width
+        document.querySelector('.number').style.width = '15rem';
+    })
+
+// NULL vs UNDEFINED --
+// both are saying there is no value
+//
+// null means no value at all - it does not exist at all
+//
+// undefined means something can exist but it has no value at all
+// undefined is the default state of all variables when you just make them without giving a value
+// let a; (a has no value it is undefined)
 
 // this inside function is very similar to
 //
